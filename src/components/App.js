@@ -6,7 +6,7 @@ import logo from '../images/sheep.svg';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Helmet title="Shedgewool"/>
         <div className="App-header">
           <h1 className="App-title">Shedgewool</h1>

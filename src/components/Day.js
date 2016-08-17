@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { load as loadSchedule } from '../redux/reducers/schedule';
+import Loader from './Loader';
 
-class Schedule extends Component {
+class Day extends Component {
   static propTypes = {
     schedule: React.PropTypes.object.isRequired,
   }
@@ -16,26 +16,27 @@ class Schedule extends Component {
   }
 
   render() {
-    const { schedule } = this.props;
+    const { schedule, params: {day} } = this.props;
+
+    if (!schedule.data) return <Loader />;
+
     return (
       <div>
-        <h2>Schedules by day:</h2>
-        <ul>
-          {Object.keys(schedule.data || {}).map(day => (
-            <li key={day}>
-              <Link to={day}>{day}</Link>
-            </li>
-          ))}
-        </ul>
+        <h2>Here's the schedule for {day}</h2>
+        <pre style={{whiteSpace: 'pre-wrap'}}>
+          <code>
+            {JSON.stringify(schedule.data[day])}
+          </code>
+        </pre>
       </div>
     );
   }
 }
 
-Schedule = connect(state => ({
+Day = connect(state => ({
   schedule: state.schedule,
 }), {
   loadSchedule,
-})(Schedule);
+})(Day);
 
-export default Schedule;
+export default Day;
