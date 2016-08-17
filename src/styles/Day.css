@@ -1,0 +1,6 @@
+.Day-header h2 {
+  display: inline-block;
+}
+.Day-header > *:nth-child(n + 1) {
+  margin-left: 2em;
+}

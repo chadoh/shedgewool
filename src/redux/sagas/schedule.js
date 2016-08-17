@@ -8,17 +8,20 @@ import {
 const normalize = (_data) => {
   const byDays = _data.days.reduce((daysAcc, day) => {
     daysAcc[day.name] = day.stages.reduce((stagesAcc, stage) => {
-      stagesAcc = [
-        ...stagesAcc,
-        ...stage.sessions.map(session => ({
-          ...session,
-          time_start: String(session.time_start),
-          time_end: String(session.time_end),
-          stage: stage.name,
-        }))
-      ];
+      stage.sessions.forEach(session => {
+        const hour = Math.floor(Number(session.time_start) / 100);
+        stagesAcc[hour] = [
+          ...(stagesAcc[hour] || []),
+          {
+            ...session,
+            time_start: Number(session.time_start),
+            time_end: Number(session.time_end),
+            stage: stage.name,
+          }
+        ]
+      })
       return stagesAcc;
-    }, []);
+    }, {});
     return daysAcc;
   }, {});
   return byDays;
