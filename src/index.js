@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { browserHistory } from 'react-router';
+import Root from './components/Root';
+import createStore from './redux/create.js';
+import './styles/index.css';
+
+const store = createStore();
 
 ReactDOM.render(
-  <App />,
+  <Root store={store} history={browserHistory} />,
   document.getElementById('root')
 );
