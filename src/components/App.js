@@ -12,9 +12,7 @@ class App extends Component {
           <h1 className="App-title">Shedgewool</h1>
           <img className="App-logo" src={logo} alt="" />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {this.props.children}
       </div>
     );
   }
