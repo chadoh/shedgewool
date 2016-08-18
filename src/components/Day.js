@@ -7,7 +7,7 @@ import Container from './Container';
 import '../styles/Day.css';
 
 const contains = (sessions, id) => {
-  return sessions.filter(session => session.id === Number(id))[0];
+  return sessions.filter(session => session.id === id)[0];
 }
 
 class Day extends Component {
@@ -23,7 +23,9 @@ class Day extends Component {
   }
 
   render() {
-    const { schedule, params: {day, sessionId} } = this.props;
+    const { schedule, params: {day} } = this.props;
+    let { sessionId } = this.props.params;
+    sessionId = sessionId && Number(sessionId);
 
     if (!schedule.data) return <Loader />;
 
@@ -40,6 +42,7 @@ class Day extends Component {
         </Container>
 
         {Object.keys(schedule.data[day] || {}).map(hour => {
+          const currentSession = contains(schedule.data[day][hour], sessionId);
           return (
             <div key={hour}>
               <Container>
@@ -51,7 +54,11 @@ class Day extends Component {
                       : session.speaker.external_image;
                     return (
                       <div key={session.id}>
-                        <Link to={`/${day}/${session.id}`} className="Day-sessionLink">
+                        <Link className="Day-sessionLink" to={
+                          session.id === sessionId
+                            ? `/${day}`
+                            : `/${day}/${session.id}`
+                        }>
                           <figure className="Day-figure">
                             { image &&
                               <img src={image}
@@ -60,8 +67,8 @@ class Day extends Component {
                               />
                             }
                             <figcaption>
-                              { !image && <p>{session.talk.title}</p> }
-                              {session.time_start} – {session.time_end}
+                              {session.talk.title}<br/>
+                              <small><em>{session.time_start} – {session.time_end}</em></small>
                             </figcaption>
                           </figure>
                         </Link>
@@ -70,9 +77,9 @@ class Day extends Component {
                   })}
                 </div>
               </Container>
-              { sessionId && contains(schedule.data[day][hour], sessionId)  &&
+              { sessionId && currentSession &&
                 React.cloneElement(this.props.children, {
-                  session: contains(schedule.data[day][hour], sessionId),
+                  session: currentSession,
                 })
               }
             </div>
