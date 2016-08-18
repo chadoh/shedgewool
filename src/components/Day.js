@@ -40,7 +40,7 @@ class Day extends Component {
           </header>
         </Container>
 
-        {Object.keys(schedule.data[day] || {}).map(hour => {
+        {Object.keys(schedule.data[day] || {}).sort().map(hour => {
           const currentSession = contains(schedule.data[day][hour], sessionId);
           return (
             <div key={hour}>

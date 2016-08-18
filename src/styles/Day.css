@@ -20,6 +20,8 @@
   left: -1.5em;
   align-self: center;
   color: #ccc;
+  wrd-break: break-all;
+  width: 1.5em;
 }
 
 .Day-figure {
