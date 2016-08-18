@@ -1,6 +1,6 @@
-export const LOAD = "shedgewool/schedule/LOAD";
-export const LOAD_SUCCESS = "shedgewool/schedule/LOAD_SUCCESS";
-export const LOAD_FAIL = "shedgewool/schedule/LOAD_FAIL";
+export const LOAD = 'shedgewool/schedule/LOAD';
+export const LOAD_SUCCESS = 'shedgewool/schedule/LOAD_SUCCESS';
+export const LOAD_FAIL = 'shedgewool/schedule/LOAD_FAIL';
 
 const initialState = {
   loading: false,
