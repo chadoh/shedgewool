@@ -9,7 +9,11 @@ const normalize = (_data) => {
   const byDays = _data.days.reduce((daysAcc, day) => {
     daysAcc[day.name] = day.stages.reduce((stagesAcc, stage) => {
       stage.sessions.forEach(session => {
-        const hour = Math.floor(Number(session.time_start) / 100);
+        const time = Number(session.time_start) / 100;
+        const floor = Math.floor(time);
+        const decimal = time - floor;
+        const adjusted = floor + (decimal * 1.6666667);
+        const hour = Math.round(adjusted);
         stagesAcc[hour] = [
           ...(stagesAcc[hour] || []),
           {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { load as loadSchedule } from '../redux/reducers/schedule';
+import Container from './Container';
 
 class Schedule extends Component {
   static propTypes = {
@@ -18,7 +19,7 @@ class Schedule extends Component {
   render() {
     const { schedule } = this.props;
     return (
-      <div>
+      <Container>
         <h2>Schedules by day:</h2>
         <ul>
           {Object.keys(schedule.data || {}).map(day => (
@@ -27,7 +28,7 @@ class Schedule extends Component {
             </li>
           ))}
         </ul>
-      </div>
+      </Container>
     );
   }
 }
