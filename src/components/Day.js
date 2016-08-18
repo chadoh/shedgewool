@@ -82,7 +82,7 @@ class Day extends Component {
 }
 
 Day = connect(state => ({
-  schedule: state.schedule,
+  schedule: state.schedule2,
   favorites: state.favorites,
 }), {
   loadSchedule,

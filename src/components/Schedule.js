@@ -34,7 +34,7 @@ class Schedule extends Component {
 }
 
 Schedule = connect(state => ({
-  schedule: state.schedule,
+  schedule: state.schedule2,
 }), {
   loadSchedule,
 })(Schedule);

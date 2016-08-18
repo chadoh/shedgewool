@@ -3,6 +3,6 @@ import schedule from './schedule';
 import favorites from './favorites';
 
 export default combineReducers({
-  schedule,
+  schedule2: schedule,
   favorites,
 });
