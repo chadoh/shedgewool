@@ -27,8 +27,9 @@ class Session extends Component {
           <div className="Session-columns">
             <div>
               <h4>{session.talk.title}</h4>
+              {favorites[sessionId] ? '⭐️  ' : '☆  '}
               <a onClick={this.toggleFavorite} href="#toggle-favorite">
-                {favorites[sessionId] ? '⭐️  Remove Favorite' : '☆  Add Favorite' }
+                {favorites[sessionId] ? 'Remove Favorite' : 'Add Favorite' }
               </a>
               <p>
                 <strong>Stage:</strong> {session.stage}<br/>
