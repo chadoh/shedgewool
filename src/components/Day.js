@@ -13,6 +13,7 @@ const contains = (sessions, id) => {
 class Day extends Component {
   static propTypes = {
     schedule: React.PropTypes.object.isRequired,
+    favorites: React.PropTypes.object.isRequired,
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ class Day extends Component {
   }
 
   render() {
-    const { schedule, params: {day, sessionId} } = this.props;
+    const { schedule, favorites, params: {day, sessionId} } = this.props;
 
     if (!schedule.data) return <Loader />;
 
@@ -49,6 +50,9 @@ class Day extends Component {
                   {schedule.data[day][hour].map(session => {
                     return (
                       <div key={session.id}>
+                        {favorites[session.id] &&
+                          <span className="Day-favorite">⭐️ </span>
+                        }
                         <Link className="Day-sessionLink" to={
                           session.id === sessionId
                             ? `/${day}`
@@ -79,6 +83,7 @@ class Day extends Component {
 
 Day = connect(state => ({
   schedule: state.schedule,
+  favorites: state.favorites,
 }), {
   loadSchedule,
 })(Day);
