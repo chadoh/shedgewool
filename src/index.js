@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { loadState, saveState } from './helpers/localStorage';
 import Root from './components/Root';
 import createStore from './redux/create';
@@ -14,6 +14,6 @@ store.subscribe(() => {
 });
 
 ReactDOM.render(
-  <Root store={store} history={browserHistory} />,
+  <Root store={store} history={hashHistory} />,
   document.getElementById('root')
 );
