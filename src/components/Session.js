@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from './Container';
+import '../styles/Session.css';
 
 export default ({session}) => {
   return (
