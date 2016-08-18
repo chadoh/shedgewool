@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import ReactMarkdown from 'react-markdown';
 import Container from './Container';
 import '../styles/Session.css';
 import {
@@ -36,13 +37,13 @@ class Session extends Component {
                 <strong>Room:</strong> {session.room}<br/>
                 <strong>Time:</strong> {session.time_start} – {session.time_end}<br/>
               </p>
-              <p>{session.talk.description}</p>
+              <ReactMarkdown source={session.talk.description}/>
             </div>
             <div>
               {session.image && <img src={session.image} className="Day-image"
                 alt={session.talk.title} />}<br/>
               <h4>{session.speaker.name}</h4>
-              <p>{session.speaker.bio.long}</p>
+              <ReactMarkdown source={session.speaker.bio.long}/>
             </div>
           </div>
         </Container>
