@@ -23,9 +23,7 @@ class Day extends Component {
   }
 
   render() {
-    const { schedule, params: {day} } = this.props;
-    let { sessionId } = this.props.params;
-    sessionId = sessionId && Number(sessionId);
+    const { schedule, params: {day, sessionId} } = this.props;
 
     if (!schedule.data) return <Loader />;
 
@@ -49,9 +47,6 @@ class Day extends Component {
                 <div className="Day-timeslot">
                   <div className="Day-hour">{hour}</div>
                   {schedule.data[day][hour].map(session => {
-                    const image = session.speaker.image
-                      ? `http://abstractions.io/images/speakers/${session.speaker.image}`
-                      : session.speaker.external_image;
                     return (
                       <div key={session.id}>
                         <Link className="Day-sessionLink" to={
@@ -59,18 +54,10 @@ class Day extends Component {
                             ? `/${day}`
                             : `/${day}/${session.id}`
                         }>
-                          <figure className="Day-figure">
-                            { image &&
-                              <img src={image}
-                                alt={session.talk.title}
-                                className="Day-image"
-                              />
-                            }
-                            <figcaption>
-                              {session.talk.title}<br/>
-                              <small><em>{session.time_start} – {session.time_end}</em></small>
-                            </figcaption>
-                          </figure>
+                          <strong>{session.stage}</strong><br/>
+                          {session.image && <img src={session.image} className="Day-image"
+                            alt={session.talk.title} />}<br/>
+                          <small><em>{session.time_start} – {session.time_end}</em></small>
                         </Link>
                       </div>
                     );

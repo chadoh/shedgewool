@@ -18,9 +18,13 @@ const normalize = (_data) => {
           ...(stagesAcc[hour] || []),
           {
             ...session,
+            id: String(session.id),
+            image: session.speaker.image
+                      ? `http://abstractions.io/images/speakers/${session.speaker.image}`
+                      : session.speaker.external_image,
             time_start: Number(session.time_start),
             time_end: Number(session.time_end),
-            stage: stage.name,
+            stage: stage.name.split(' ')[0],
           }
         ]
       })

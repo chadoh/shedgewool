@@ -1,0 +1,19 @@
+.Session {
+  background-color: rgb(220, 220, 220);
+}
+
+.Session-close {
+  float: right;
+  color: #888;
+  text-decoration: none;
+}
+
+@media(min-width: 420px) {
+  .Session-columns {
+    display: flex;
+  }
+}
+
+.Session-columns > * {
+  min-width: 200px;
+}
