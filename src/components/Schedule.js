@@ -20,7 +20,7 @@ class Schedule extends Component {
     const { schedule } = this.props;
     return (
       <Container>
-        <h2>Schedules by day:</h2>
+        <h2>Pick a day:</h2>
         <ul>
           {Object.keys(schedule.data || {}).map(day => (
             <li key={day}>

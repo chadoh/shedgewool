@@ -1,9 +1,9 @@
-import client from '../../helpers/ApiClient';
 import { takeLatest } from 'redux-saga';
-import { call, put, fork } from 'redux-saga/effects';
+import { put, fork } from 'redux-saga/effects';
 import {
   LOAD, LOAD_SUCCESS, LOAD_FAIL,
 } from '../reducers/schedule.js';
+import json from '../../static/schedule.json';
 
 const normalize = (_data) => {
   const byDays = _data.days.reduce((daysAcc, day) => {
@@ -39,7 +39,7 @@ const normalize = (_data) => {
 
 function* load(action) {
   try {
-    const result = yield call(client.get, '/schedule.json');
+    const result = yield json;
 
     yield put({ ...action, type: LOAD_SUCCESS, result: normalize(result) });
   }
