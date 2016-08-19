@@ -1,5 +1,6 @@
 .Session {
-  background-color: rgb(220, 220, 220);
+  background-color: #eee;
+  box-shadow: inset 0 0 10px rgba(0,0,0,.2);
 }
 
 .Session-close {
@@ -16,4 +17,12 @@
 
 .Session-columns > * {
   min-width: 200px;
+}
+
+.Session-columns > *:last-child {
+  margin-left: 0.5em;
+}
+
+.Session-image {
+  max-width: 100%;
 }

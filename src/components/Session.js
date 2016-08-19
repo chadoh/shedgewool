@@ -25,9 +25,9 @@ class Session extends Component {
           <Link to={`/${day}`} className="Session-close">
             &times;
           </Link>
+          <h4>{session.talk.title}</h4>
           <div className="Session-columns">
             <div>
-              <h4>{session.talk.title}</h4>
               {favorites[sessionId] ? '⭐️  ' : '☆  '}
               <a onClick={this.toggleFavorite} href="#toggle-favorite">
                 {favorites[sessionId] ? 'Remove Favorite' : 'Add Favorite' }
@@ -40,7 +40,7 @@ class Session extends Component {
               <ReactMarkdown source={session.talk.description}/>
             </div>
             <div>
-              {session.image && <img src={session.image} className="Day-image"
+              {session.image && <img src={session.image} className="Session-image"
                 alt={session.talk.title} />}<br/>
               <h4>{session.speaker.name}</h4>
               <ReactMarkdown source={session.speaker.bio.long}/>

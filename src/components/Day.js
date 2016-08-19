@@ -47,30 +47,42 @@ class Day extends Component {
           const currentSession = contains(schedule.data[day][hour], sessionId);
           return (
             <div key={hour}>
-              <Container>
-                <div className="Day-timeslot">
-                  <div className="Day-hour">{hour}</div>
-                  {schedule.data[day][hour].map(session => {
-                    return (
-                      <div key={session.id}>
-                        {favorites[session.id] &&
-                          <span className="Day-favorite">⭐️ </span>
+              <div className="Day-timeslot">
+                <div className="Day-hour">{hour}</div>
+                {schedule.data[day][hour].map(session => {
+                  return (
+                    <div key={session.id} className="Day-session">
+                      {favorites[session.id] &&
+                        <span className="Day-favorite">⭐️ </span>
+                      }
+                      <Link className="Day-sessionLink" to={
+                        session.id === sessionId
+                          ? `/${day}`
+                          : `/${day}/${session.id}`
+                      }>
+                        {session.image &&
+                          <div className="Day-imageWrap">
+                            <div className="Day-image" title={session.talk.title}
+                              style={{backgroundImage: `url(${session.image})`}}/>
+                            <br/>
+                          </div>
                         }
-                        <Link className="Day-sessionLink" to={
-                          session.id === sessionId
-                            ? `/${day}`
-                            : `/${day}/${session.id}`
-                        }>
-                          <strong>{session.stage}</strong><br/>
-                          {session.image && <img src={session.image} className="Day-image"
-                            alt={session.talk.title} />}<br/>
-                          <small><em>{session.time_start} – {session.time_end}</em></small>
-                        </Link>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Container>
+                        <span className="Day-sessionTitle">
+                          {session.stage}
+                        </span>
+                        <small className="Day-sessionTime">
+                          {session.time_start} – {session.time_end}
+                        </small>
+                      </Link>
+                      {sessionId && session.id === sessionId &&
+                        <div className="Day-arrowWrap">
+                          <div className="Day-arrow"/>
+                        </div>
+                      }
+                    </div>
+                  );
+                })}
+              </div>
               { sessionId && currentSession &&
                 React.cloneElement(this.props.children, {
                   session: currentSession,

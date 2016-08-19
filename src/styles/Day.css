@@ -2,17 +2,14 @@
   display: inline;
 }
 .Day-header > *:nth-child(n + 2) {
-  margin-left: 2em;
+  margin-left: 1.3em;
 }
 
 .Day-timeslot {
   position: relative;
+  padding: 0 2em;
   display: flex;
-}
-
-.Day-timeslot > * {
-  word-break: break-word;
-  padding: 0 0.2em;
+  justify-content: space-around;
 }
 
 .Day-hour {
@@ -20,16 +17,80 @@
   left: -1.5em;
   align-self: center;
   color: #ccc;
-  wrd-break: break-all;
+  word-break: break-all;
   width: 1.5em;
 }
 
-.Day-figure {
-  margin: 0;
+.Day-session {
+  word-break: break-word;
+  flex: 1;
+  max-width: 150px;
+  display: flex;
+  position: relative;
+  margin-left: 0.3em;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: .2em;
+  font-size: .8em;
+}
+
+.Day-session > a {
+  padding: .5em;
+  text-decoration: none;
+  color: #20221f;
+  display: block;
+  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   text-align: center;
 }
 
+.Day-session > a:focus,
+.Day-session > a:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.Day-session > a:active {
+  box-shadow: inset 0 0 10px rgba(0,0,0,.1);
+}
+
+.Day-sessionTime {
+  color: #888;
+}
+
+.Day-imageWrap {
+  position: relative;
+  padding-bottom: 100%;
+  height: 0;
+  width: 100%;
+}
+
 .Day-image {
-  max-width: 100%;
-  max-height: 150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.Day-arrowWrap {
+  position: absolute;
+  bottom: -17px;
+  left: 50%;
+}
+
+.Day-arrow {
+  position: relative;
+  left: -50%;
+  width: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid rgba(0,0,0,.16);
 }
