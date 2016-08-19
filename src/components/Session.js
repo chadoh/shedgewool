@@ -10,8 +10,7 @@ import {
 } from '../redux/reducers/favorites';
 
 class Session extends Component {
-  toggleFavorite = (e) => {
-    e.preventDefault();
+  toggleFavorite = () => {
     const { favorites, params: { sessionId }} = this.props;
     if (favorites[sessionId]) this.props.removeFavorite(sessionId);
     else this.props.addFavorite(sessionId);
@@ -25,13 +24,18 @@ class Session extends Component {
           <Link to={`/${day}`} className="Session-close">
             &times;
           </Link>
-          <h4>{session.talk.title}</h4>
+          <h4>
+            {favorites[sessionId] && '⭐️  '}
+            {session.talk.title}
+            {favorites[sessionId] && ' ⭐️ '}
+          </h4>
           <div className="Session-columns">
             <div>
-              {favorites[sessionId] ? '⭐️  ' : '☆  '}
-              <a onClick={this.toggleFavorite} href="#toggle-favorite">
+              <button onClick={this.toggleFavorite}
+                className={
+                  `Session-button ${favorites[sessionId] && 'Session-isFavorite'}`}>
                 {favorites[sessionId] ? 'Remove Favorite' : 'Add Favorite' }
-              </a>
+              </button>
               <p>
                 <strong>Stage:</strong> {session.stage}<br/>
                 <strong>Room:</strong> {session.room}<br/>
