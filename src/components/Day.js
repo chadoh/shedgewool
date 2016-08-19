@@ -47,41 +47,43 @@ class Day extends Component {
           const currentSession = contains(schedule.data[day][hour], sessionId);
           return (
             <div key={hour}>
-              <div className="Day-timeslot">
-                <div className="Day-hour">{hour}</div>
-                {schedule.data[day][hour].map(session => {
-                  return (
-                    <div key={session.id} className={
-                      `Day-session ${favorites[session.id] && 'Day-favoriteSession'}`}>
-                      {favorites[session.id] &&
-                        <span className="Day-favorite">⭐️ </span>
-                      }
-                      <Link className={
-                        `Day-sessionLink ${favorites[session.id] && 'Day-favoriteSession'}`}
-                        to={session.id === sessionId ? `/${day}` : `/${day}/${session.id}`}>
-                        {session.image &&
-                          <div className="Day-imageWrap">
-                            <div className="Day-image" title={session.talk.title}
-                              style={{backgroundImage: `url(${session.image})`}}/>
-                            <br/>
+              <Container className="Day-timeslotWrapper">
+                <div className="Day-timeslot">
+                  <div className="Day-hour">{hour}</div>
+                  {schedule.data[day][hour].map(session => {
+                    return (
+                      <div key={session.id} className={
+                        `Day-session ${favorites[session.id] && 'Day-favoriteSession'}`}>
+                        {favorites[session.id] &&
+                          <span className="Day-favorite">⭐️ </span>
+                        }
+                        <Link className={
+                          `Day-sessionLink ${favorites[session.id] && 'Day-favoriteSession'}`}
+                          to={session.id === sessionId ? `/${day}` : `/${day}/${session.id}`}>
+                          {session.image &&
+                            <div className="Day-imageWrap">
+                              <div className="Day-image" title={session.talk.title}
+                                style={{backgroundImage: `url(${session.image})`}}/>
+                              <br/>
+                            </div>
+                          }
+                          <span className="Day-sessionTitle">
+                            {session.stage}
+                          </span>
+                          <small className="Day-sessionTime">
+                            {session.time_start} – {session.time_end}
+                          </small>
+                        </Link>
+                        {sessionId && session.id === sessionId &&
+                          <div className="Day-arrowWrap">
+                            <div className="Day-arrow"/>
                           </div>
                         }
-                        <span className="Day-sessionTitle">
-                          {session.stage}
-                        </span>
-                        <small className="Day-sessionTime">
-                          {session.time_start} – {session.time_end}
-                        </small>
-                      </Link>
-                      {sessionId && session.id === sessionId &&
-                        <div className="Day-arrowWrap">
-                          <div className="Day-arrow"/>
-                        </div>
-                      }
-                    </div>
-                  );
-                })}
-              </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Container>
               { sessionId && currentSession &&
                 React.cloneElement(this.props.children, {
                   session: currentSession,

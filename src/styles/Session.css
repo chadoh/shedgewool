@@ -16,11 +16,12 @@
   }
 }
 
-.Session-columns > * {
-  min-width: 200px;
+.Session-columns {
+  margin-left: -0.5em;
 }
 
-.Session-columns > *:last-child {
+.Session-columns > * {
+  min-width: 200px;
   margin-left: 0.5em;
 }
 

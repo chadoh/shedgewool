@@ -1,9 +1,9 @@
 import React from 'react';
 import '../styles/Container.css';
 
-export default ({children}) => {
+export default ({className, children}) => {
   return (
-    <div className="Container">
+    <div className={[className, 'Container'].join(' ')}>
       {children}
     </div>
   );
