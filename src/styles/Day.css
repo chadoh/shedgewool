@@ -34,6 +34,11 @@
   font-size: .8em;
 }
 
+.Day-favorite {
+  position: absolute;
+  font-size: 3em;
+}
+
 .Day-session > a {
   padding: .5em;
   text-decoration: none;
