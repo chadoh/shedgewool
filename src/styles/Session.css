@@ -1,6 +1,7 @@
 .Session {
   background-color: #eee;
   box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+  margin-bottom: 1em;
 }
 
 .Session-close {
