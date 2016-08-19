@@ -34,9 +34,15 @@
   font-size: .8em;
 }
 
+.Day-favoriteSession {
+  border-color: #e2af51;
+}
+
 .Day-favorite {
   position: absolute;
-  font-size: 3em;
+  font-size: 2em;
+  top: -13px;
+  left: -6px;
 }
 
 .Day-session > a {

@@ -51,15 +51,14 @@ class Day extends Component {
                 <div className="Day-hour">{hour}</div>
                 {schedule.data[day][hour].map(session => {
                   return (
-                    <div key={session.id} className="Day-session">
+                    <div key={session.id} className={
+                      `Day-session ${favorites[session.id] && 'Day-favoriteSession'}`}>
                       {favorites[session.id] &&
                         <span className="Day-favorite">⭐️ </span>
                       }
-                      <Link className="Day-sessionLink" to={
-                        session.id === sessionId
-                          ? `/${day}`
-                          : `/${day}/${session.id}`
-                      }>
+                      <Link className={
+                        `Day-sessionLink ${favorites[session.id] && 'Day-favoriteSession'}`}
+                        to={session.id === sessionId ? `/${day}` : `/${day}/${session.id}`}>
                         {session.image &&
                           <div className="Day-imageWrap">
                             <div className="Day-image" title={session.talk.title}
